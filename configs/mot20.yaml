@@ -1,0 +1,52 @@
+eps: 0.001
+eval_mode: False
+use_diffmot: False
+
+active_hyper: True
+
+# optimizer
+lr: 0.0001
+use_scheduler: False
+lr_gamma: 0.98
+resume: False
+load_pretrain: False
+checkpoint: null
+
+one2one_predict: False
+decoder_only: True
+
+# train
+data_dir: "../MOT20/MOT_union/trackers_gt"
+diffnet: HMINet
+interval: 5
+augment: False
+encoder_dim: 256
+tf_layer: 3
+epochs: 400
+batch_size: 2
+seed: 123
+eval_every: 20
+gpus: [0,1,]
+
+# testing
+eval_at: 160
+det_dir: "../MOT20/detections/test"
+img_dir: "../MOT20/test"
+save_dir: "../HyperSSM/results/test/mot20_debug"
+info_dir: "../MOT20/test"
+run_evaluation: False
+reid_dir: "../HyperSSM/cache/embeddings/"
+eval_expname: mot20
+show_image: False
+use_detection_model: False
+det_ckpt: "bytetrack_x_mot17.pth.tar"
+exp_path: "external/YOLOX/exps/mot/yolox_x_mix_det.py"
+high_thres: 0.6
+low_thres: 0.1
+w_assoc_emb: 2.2
+aw_param: 1.7
+preprocess_workers: 16
+
+# Data Parameters
+device: cuda
+eval_device: None

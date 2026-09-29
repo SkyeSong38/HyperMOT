@@ -1,0 +1,47 @@
+eps: 0.001
+#eval_mode: False
+eval_mode: True
+use_diffmot: False
+
+active_hyper: True
+#active_hyper: False
+
+# optimizer
+lr: 0.0001
+# train
+data_dir: "../SportsMOT/trackers_gt_t"
+diffnet: HMINet
+interval: 5
+augment: False
+encoder_dim: 256
+tf_layer: 3
+epochs: 1000
+batch_size: 2
+seed: 123
+eval_every: 20
+gpus: [0,]
+
+# Testing
+eval_at: 340 #
+det_dir: "../SportsMOT/detections/val"
+info_dir: "../SportsMOT/val"
+run_evaluation: True
+gt_folder: "../SportsMOT/val"
+seqmap_file: "../SportsMOT/splits_txt/val.txt"
+split_to_eval: val
+reid_dir: "../HyperSSM/cache/embeddings/"
+save_dir: "../HyperSSM/results/val/yolox_m_lt_ddm_1000eps_deeper_340_ept"
+eval_expname: lt_ddm_1000_deeper
+show_image: False
+use_detection_model: False
+det_ckpt: "SportsMOT_yolox_x.tar"
+exp_path: "external/YOLOX/exps/sportsmot/yolox_x_sportsmot_mix.py"
+high_thres: 0.6
+low_thres: 0.1
+w_assoc_emb: 2.0
+aw_param: 1.2
+preprocess_workers: 16
+
+# Data Parameters:
+device: cuda
+eval_device: None

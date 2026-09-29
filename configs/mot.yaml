@@ -1,0 +1,81 @@
+eps: 0.001
+eval_mode: False
+#eval_mode: True
+use_diffmot: False
+
+active_hyper: True
+#active_hyper: False
+
+# optimizer
+lr: 0.0001
+use_scheduler: False
+lr_gamma: 0.98
+resume: False
+
+load_pretrain: False
+
+## original setting
+checkpoint: null
+#one2one_predict: True
+#decoder_only: False
+
+# test1
+# checkpoint: "experiments/mot_ddm_1000_deeper/_epoch100.pt"
+# one2one_predict: False
+# decoder_only: True
+
+# test1
+#checkpoint: "experiments/mot_ddm_1000_deeper/_epoch340.pt"
+one2one_predict: False
+decoder_only: True
+
+#hyper_prediction: True
+
+# train
+#
+data_dir: "../MOT17/MOT_union/trackers_gt"
+####
+diffnet: HMINet
+interval: 5
+augment: False
+encoder_dim: 256
+tf_layer: 3
+epochs: 400
+batch_size: 2
+seed: 123
+eval_every: 20
+gpus: [0,1,]
+
+## Testing
+#eval_at: 800
+#eval_expname: mot_ddm_1000_deeper
+#show_image: False
+#use_detection_model: False
+#high_thres: 0.6
+#low_thres: 0.1
+#w_assoc_emb: 2.2
+#aw_param: 1.7
+#preprocess_workers: 16
+
+# Testings
+eval_at: 160 # 100-74.146 260-74.597 460-74.436
+det_dir: "../Detections/MOT/detections_yolox_x/test"
+img_dir: "../MOT/test"
+save_dir: "../HyperSSM/results/test/mot17_debug"
+info_dir: "../MOT/test"
+run_evaluation: False  # Test GT is not available locally.
+reid_dir: "../HyperSSM/cache/embeddings/"
+eval_expname: mot_ddm_1000_deeper
+show_image: False
+use_detection_model: False
+det_ckpt: "bytetrack_x_mot17.pth.tar"
+exp_path: "external/YOLOX/exps/mot/yolox_x_mix_det.py"
+high_thres: 0.6
+low_thres: 0.1
+w_assoc_emb: 2.2
+aw_param: 1.7
+preprocess_workers: 16
+
+# Data Parameters:
+device: cuda
+eval_device: None
